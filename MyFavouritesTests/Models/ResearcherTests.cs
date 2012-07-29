@@ -11,13 +11,19 @@ namespace MyFavouritesTests.Models
     public class ResearcherTests
     {
         [Test]
-        public void CanCreateAResearcher()
+        public void CanCreateAndAssignPropertiesToResearcher()
         {
-            //setup/act
+            // Setup 
             var researcher = new Researcher();
 
-            //Assert
+            // Act
+            researcher.Name = "Jane Smith";
+            researcher.Email = "jsmith@email.org";
+
+            // Assert
             Assert.IsInstanceOf<Researcher>(researcher);
+            Assert.AreEqual("Jane Smith", researcher.Name);
+            Assert.AreEqual("jsmith@email.org", researcher.Email);
         }
     }
 }
