@@ -1,0 +1,19 @@
+What we have learned:
+
+- How to help set up and configured our projects with ActiveRecord
+	- Copied the ModelTests and SQLiteinmemorytestingconnectionprovider
+	- Copied and configured the AppConfig.
+	- Downloaded and Installed SQLite via Nuget (x86)
+	- Because we used x86 SQLite, we had to change the Project Properties to use x86 under Build.
+- Decorated properties with attributes like [Properties], [PrimaryKey],
+- Inherited from ActiveRecordBase<> and ModelTests
+- Created relationships [HasMany], [BelongsTo], as well as Cascading.
+- Lazy-loading/Eager-loading.
+- SessionScopes (Creating/Disposing)
+	-Session Handlers
+- Updated Unit Tests to use ActiveRecord
+- Differences between ORMs, such as Massive (OM) vs. ActiveRecord (ORM).
+- ActiveRecord Functions (Save(), Findz(), etc.)
+- Normal Forms, Normalization	(-http://en.wikipedia.org/wiki/Third_normal_form)
+- Learning to read error messages, stack traces.
+- Better learning NUnit functions (Assert.AreEqual, etc.).
