@@ -15,9 +15,11 @@ namespace MyFavouritesTests.Models
         public void CanPersist()
         {
             // Setup
+            var author = new Researcher {Name = "Payam Yavari"};
+            author.Save();
             var document = new Document();
             document.Title = "New Findings";
-            document.Author = "Payam Yavari";
+            document.Author = author;
 
             // Act
             document.Save();
@@ -25,7 +27,7 @@ namespace MyFavouritesTests.Models
             // Assert
             document = Document.Find(document.Id);
             Assert.AreEqual("New Findings", document.Title);
-            Assert.AreEqual("Payam Yavari", document.Author);
+            Assert.AreEqual("Payam Yavari", document.AuthorName);
 
         }
     }

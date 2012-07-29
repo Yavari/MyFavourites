@@ -15,7 +15,9 @@ namespace MyFavourites.Models
         [Property]
         public string Title { get; set; }
 
-        [Property]
-        public string Author { get; set; }
+        public string AuthorName { get { return Author.Name; }}
+
+        [BelongsTo]
+        public Researcher Author { get; set; }
     }
 }

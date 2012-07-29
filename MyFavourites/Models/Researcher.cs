@@ -19,7 +19,8 @@ namespace MyFavourites.Models
         [Property]
         public string Name { get; set; }
 
-        public List<Document> Documents { get; set; }
+        [HasMany(Cascade = ManyRelationCascadeEnum.All)]
+        public IList<Document> Documents { get; set; }
 
         public Researcher()
         {
@@ -28,7 +29,7 @@ namespace MyFavourites.Models
 
         public void AuthorDocument(string title)
         {
-            Documents.Add(new Document{Title = title, Author = Name});
+            Documents.Add(new Document{Title = title});
         }
 
         public static Researcher FindByName(string name)
