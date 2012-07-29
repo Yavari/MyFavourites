@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="Infrastructure\ScopeManagement.cs" />
     <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\Favourite.cs" />
     <Compile Include="Models\Researcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

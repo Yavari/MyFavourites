@@ -15,9 +15,15 @@ namespace MyFavourites.Models
         [Property]
         public string Title { get; set; }
 
-        public string AuthorName { get { return Author.Name; }}
+        [Property]
+        public string Text { get; set; }
 
         [BelongsTo]
         public Researcher Author { get; set; }
+
+        [HasMany(Cascade = ManyRelationCascadeEnum.All, Lazy = true)]
+        public IList<Favourite> Favourites { get; set; }
+
+        public string AuthorName { get { return Author.Name; } }
     }
 }

@@ -19,6 +19,7 @@ namespace MyFavouritesTests.Models
             author.Save();
             var document = new Document();
             document.Title = "New Findings";
+            document.Text = "Paragraphs of text";
             document.Author = author;
 
             // Act
@@ -27,6 +28,7 @@ namespace MyFavouritesTests.Models
             // Assert
             document = Document.Find(document.Id);
             Assert.AreEqual("New Findings", document.Title);
+            Assert.AreEqual("Paragraphs of text", document.Text);
             Assert.AreEqual("Payam Yavari", document.AuthorName);
 
         }
