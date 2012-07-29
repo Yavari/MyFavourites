@@ -25,5 +25,19 @@ namespace MyFavouritesTests.Models
             Assert.AreEqual("Jane Smith", researcher.Name);
             Assert.AreEqual("jsmith@email.org", researcher.Email);
         }
+
+        [Test]
+        public void CanAuthorDocuments()
+        {
+            // Setup
+            var researcher = new Researcher();
+
+            // Act
+            researcher.AuthorDocument();
+            researcher.AuthorDocument();
+
+            // Assert
+            Assert.AreEqual(2, researcher.Documents.Count);
+        }
     }
 }
