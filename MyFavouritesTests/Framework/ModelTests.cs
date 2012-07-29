@@ -2,6 +2,7 @@
 using Castle.ActiveRecord;
 using Castle.ActiveRecord.Framework;
 using Castle.ActiveRecord.Framework.Config;
+using MyFavourites.Infrastructure;
 using log4net.Config;
 using NUnit.Framework;
 
@@ -24,11 +25,13 @@ namespace MyFavouritesTests.Framework
         public void SetUp()
         {
             ActiveRecordStarter.CreateSchema();
+            ScopeManagement.CreateScope();
         }
 
         [TearDown]
         public void TearDownFixture()
         {
+            ScopeManagement.DisposeScope();
             ActiveRecordStarter.DropSchema(); 
         }
     }
