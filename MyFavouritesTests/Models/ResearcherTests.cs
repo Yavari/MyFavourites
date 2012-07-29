@@ -30,14 +30,18 @@ namespace MyFavouritesTests.Models
         public void CanAuthorDocuments()
         {
             // Setup
-            var researcher = new Researcher();
+            var researcher = new Researcher {Name = "Payam Yavari"};
 
             // Act
-            researcher.AuthorDocument();
-            researcher.AuthorDocument();
+            researcher.AuthorDocument("The Speed of Sounds");
+            researcher.AuthorDocument("The speed of Stones");
 
             // Assert
             Assert.AreEqual(2, researcher.Documents.Count);
+            Assert.AreEqual("The Speed of Sounds", researcher.Documents.First().Title);
+            Assert.AreEqual("Payam Yavari", researcher.Documents.First().Author);
+            Assert.AreEqual("The speed of Stones", researcher.Documents.Last().Title);
+            Assert.AreEqual("Payam Yavari", researcher.Documents.Last().Author);
         }
     }
 }

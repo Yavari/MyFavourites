@@ -10,16 +10,16 @@ namespace MyFavourites.Models
         public string Email { get; set; }
         public string Name { get; set; }
 
-        public List<string> Documents { get; set; }
+        public List<Document> Documents { get; set; }
 
         public Researcher()
         {
-            Documents = new List<string>();
+            Documents = new List<Document>();
         }
 
-        public void AuthorDocument()
+        public void AuthorDocument(string title)
         {
-            Documents.Add("This is my first document");
+            Documents.Add(new Document{Title = title, Author = Name});
         }
     }
 }
