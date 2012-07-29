@@ -12,9 +12,13 @@ namespace MyFavourites.Models
 
         public List<string> Documents { get; set; }
 
-        public void AuthorDocument()
+        public Researcher()
         {
             Documents = new List<string>();
+        }
+
+        public void AuthorDocument()
+        {
             Documents.Add("This is my first document");
         }
     }
