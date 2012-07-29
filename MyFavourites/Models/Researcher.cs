@@ -19,7 +19,7 @@ namespace MyFavourites.Models
         [Property]
         public string Name { get; set; }
 
-        [HasMany(Cascade = ManyRelationCascadeEnum.All)]
+        [HasMany(Cascade = ManyRelationCascadeEnum.All, Lazy = true)]
         public IList<Document> Documents { get; set; }
 
         public Researcher()

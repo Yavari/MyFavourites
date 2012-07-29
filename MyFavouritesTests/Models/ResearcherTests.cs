@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Castle.ActiveRecord;
 using MyFavourites.Models;
 using MyFavouritesTests.Framework;
 using NUnit.Framework;
@@ -41,12 +42,15 @@ namespace MyFavouritesTests.Models
             researcher.Save();
 
             // Assert
-            researcher = Researcher.Find(researcher.Id);
-            Assert.AreEqual(2, researcher.Documents.Count);
-            Assert.AreEqual("The Speed of Sounds", researcher.Documents.First().Title);
-            Assert.AreEqual("Payam Yavari", researcher.Documents.First().AuthorName);
-            Assert.AreEqual("The speed of Stones", researcher.Documents.Last().Title);
-            Assert.AreEqual("Payam Yavari", researcher.Documents.Last().AuthorName);
+            using (new SessionScope())
+            {
+                researcher = Researcher.Find(researcher.Id);
+                Assert.AreEqual(2, researcher.Documents.Count);
+                Assert.AreEqual("The Speed of Sounds", researcher.Documents.First().Title);
+                Assert.AreEqual("Payam Yavari", researcher.Documents.First().AuthorName);
+                Assert.AreEqual("The speed of Stones", researcher.Documents.Last().Title);
+                Assert.AreEqual("Payam Yavari", researcher.Documents.Last().AuthorName);  
+            }
         }
     }
 }
