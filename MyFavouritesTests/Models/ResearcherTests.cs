@@ -3,27 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MyFavourites.Models;
+using MyFavouritesTests.Framework;
 using NUnit.Framework;
 
 namespace MyFavouritesTests.Models
 {
     [TestFixture]
-    public class ResearcherTests
+    public class ResearcherTests : ModelTests
     {
         [Test]
-        public void CanCreateAndAssignPropertiesToResearcher()
+        public void CanPersist()
         {
             // Setup 
             var researcher = new Researcher();
-
-            // Act
             researcher.Name = "Jane Smith";
             researcher.Email = "jsmith@email.org";
 
+            // Act
+            researcher.Save();
+
             // Assert
-            Assert.IsInstanceOf<Researcher>(researcher);
-            Assert.AreEqual("Jane Smith", researcher.Name);
-            Assert.AreEqual("jsmith@email.org", researcher.Email);
+            var researcherFound = Researcher.FindByName(researcher.Name);
+            Assert.IsInstanceOf<Researcher>(researcherFound);
+            Assert.AreEqual("Jane Smith", researcherFound.Name);
+            Assert.AreEqual("jsmith@email.org", researcherFound.Email);
         }
 
         [Test]

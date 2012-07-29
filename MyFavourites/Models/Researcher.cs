@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Castle.ActiveRecord;
+using NHibernate.Criterion;
 
 namespace MyFavourites.Models
 {
-    public class Researcher
+    [ActiveRecord]
+    public class Researcher : ActiveRecordBase<Researcher>
     {
+        [PrimaryKey]
+        public int Id { get; set; }
+        
+        [Property]
         public string Email { get; set; }
+
+        [Property]
         public string Name { get; set; }
 
         public List<Document> Documents { get; set; }
@@ -20,6 +29,11 @@ namespace MyFavourites.Models
         public void AuthorDocument(string title)
         {
             Documents.Add(new Document{Title = title, Author = Name});
+        }
+
+        public static Researcher FindByName(string name)
+        {
+            return FindOne(Restrictions.Eq("Name", name));
         }
     }
 }

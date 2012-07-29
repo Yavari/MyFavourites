@@ -11,7 +11,7 @@ namespace MyFavouritesTests.Models
     public class DocumentTests
     {
         [Test]
-        public void CanCreateAndAssignProperties()
+        public void CanPersist()
         {
             // Setup
             var document = new Document();

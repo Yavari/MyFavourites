@@ -1,0 +1,17 @@
+What we learned this morning:
+  - How to start a project
+  - How to do unit testing
+  - Learned how to do TDD -- before we were writing the code and then testing
+  - Class vs. instance of an object: 
+                - Class is the definition
+                - Instance of an object is the implementation ("new ClassName()")
+  - What are the steps of TDD:
+                - Arrange/Setup               - Consultation
+                - Act                                                       - Action
+                - Assert                                                - Reflection
+  - What are the steps in modifying code: (http://reddevnews.com/~/media/ECG/visualstudiomagazine/Images/2007/11/listingsID_148_0711_rdn_tb%20gif.ashx)
+                - Red: fail
+                - Green: pass
+                - Refactor: modifying code; implementation; making it better w/out changing the behavior
+- What are constructors:
+                - Method that runs during the instantiation of your object (think of it as the intialization)
