@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using Castle.ActiveRecord;
 using MyFavourites.Controllers;
 using MyFavourites.Models;
 using MyFavouritesTests.Framework;
@@ -67,8 +68,8 @@ namespace MyFavouritesTests.Controllers
             // Setup
             var form = new FormCollection
             {
-                {"Title", "Title"},
-                {"Text", "Text"}
+                {"Title", "This is the Title"},
+                {"Text", "This is the Text"}
             };
             _controller.ValueProvider = form.ToValueProvider();
 
@@ -133,7 +134,7 @@ namespace MyFavouritesTests.Controllers
             // Assert
             ResetScope();
             Assert.AreEqual("Index", result.RouteValues["Action"]);
-            Assert.AreEqual(0, Document.FindAll().Count());
+            Assert.Throws<NotFoundException>(() => Document.Find(document.Id));
         }
     }
 }
