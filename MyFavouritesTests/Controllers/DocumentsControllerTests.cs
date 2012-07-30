@@ -27,5 +27,23 @@ namespace MyFavouritesTests.Controllers
             Assert.IsInstanceOf<IEnumerable<Document>>(result.Model);
         }
 
+        [Test]
+        public void CanGetDetails()
+        {
+            // Setup
+            var document = new Document();
+            document.Save();
+
+            var controller = new DocumentsController();
+
+            // Act
+            dynamic result = controller.Details(document.Id);
+
+            // Assert
+            Assert.AreEqual("Details", result.ViewName);
+            Assert.IsInstanceOf<Document>(result.Model);
+            Assert.AreEqual(document, result.Model.Id);
+        }
+
     }
 }
