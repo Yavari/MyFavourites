@@ -71,7 +71,9 @@ namespace MyFavouritesTests.Controllers
 
             // Assert
             Assert.AreEqual("Details", result.RouteValues["Action"]);
+            Assert.AreEqual(document.Id, result.RouteValues["Id"]);
             Assert.AreEqual(1, Document.FindAll().Count());
+            
         }
     }
 }

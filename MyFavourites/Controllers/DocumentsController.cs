@@ -21,5 +21,12 @@ namespace MyFavourites.Controllers
         {
             return View("Create");
         }
+
+        public ActionResult Create(Document document)
+        {
+            document.Save();
+            var parameters = new {id = document.Id};
+            return RedirectToAction("Details", parameters);
+        }
     }
 }
