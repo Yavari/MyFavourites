@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MyFavourites.Controllers;
 using MyFavourites.Models;
 using MyFavouritesTests.Framework;
+using MyFavouritesTests.Helpers;
 using NUnit.Framework;
 
 namespace MyFavouritesTests.Controllers
@@ -19,6 +20,7 @@ namespace MyFavouritesTests.Controllers
         public void SetUp()
         {
             _controller = new DocumentsController();
+            _controller.SetFakeControllerContext();
         }
 
 
@@ -63,15 +65,19 @@ namespace MyFavouritesTests.Controllers
         public void CanCreateDocument()
         {
             // Setup
-            var document = new Document();
+            var form = new FormCollection
+            {
+                {"Title", "Title"},
+                {"Text", "Text"}
+            };
+            _controller.ValueProvider = form.ToValueProvider();
 
             // Act
-            var result = _controller.Create(document) as 
-                RedirectToRouteResult;
+            var result = _controller.Create(form) as RedirectToRouteResult;
 
             // Assert
             Assert.AreEqual("Details", result.RouteValues["Action"]);
-            Assert.AreEqual(document.Id, result.RouteValues["Id"]);
+            Assert.AreEqual(1, result.RouteValues["Id"]);
             Assert.AreEqual(1, Document.FindAll().Count());
         }
 
@@ -94,15 +100,17 @@ namespace MyFavouritesTests.Controllers
         public void CanUpdateDocument()
         {
             // Setup
-            var document = new Document
-            {
-                Title = "New Title",
-                Text = "New Text"
-            };
+            var document = new Document();
             document.Save();
+            var form = new FormCollection
+            {
+                {"Title", "New Title"},
+                {"Text", "New Text"}
+            };
+            _controller.ValueProvider = form.ToValueProvider();
 
             // Act
-            dynamic result = _controller.Edit(document.Id, document);
+            dynamic result = _controller.Edit(document.Id, form);
 
             // Assert
             Assert.AreEqual("Details", result.RouteValues["Action"]);

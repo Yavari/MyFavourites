@@ -38,6 +38,9 @@
     <Reference Include="log4net">
       <HintPath>..\lib\ActiveRecord 2.1.1\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\lib\ActiveRecord 2.1.1\NHibernate.dll</HintPath>
     </Reference>
@@ -64,6 +67,7 @@
     <Compile Include="Controllers\DocumentsControllerTests.cs" />
     <Compile Include="Framework\ModelTests.cs" />
     <Compile Include="Framework\SQLiteInMemoryTestingConnectionProvider.cs" />
+    <Compile Include="Helpers\MvcMockHelper.cs" />
     <Compile Include="Models\DocumentTests.cs" />
     <Compile Include="Models\ResearcherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

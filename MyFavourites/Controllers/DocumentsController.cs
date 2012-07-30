@@ -22,11 +22,12 @@ namespace MyFavourites.Controllers
             return View("Create");
         }
 
-        public ActionResult Create(Document document)
+        public ActionResult Create(FormCollection form)
         {
+            var document = new Document();
+            TryUpdateModel(document);
             document.Save();
-            var parameters = new {id = document.Id};
-            return RedirectToAction("Details", parameters);
+            return RedirectToAction("Details", new {id = document.Id});
         }
 
         public ActionResult Edit(int id)
@@ -34,11 +35,10 @@ namespace MyFavourites.Controllers
             return View("Edit", Document.Find(id));
         }
 
-        public ActionResult Edit(int id, Document document)
+        public ActionResult Edit(int id, FormCollection form)
         {
             var original = Document.Find(id);
-            original.Title = document.Title;
-            original.Text = document.Text;
+            TryUpdateModel(original);
             original.Save();
             return RedirectToAction("Details", new {Id = id});
         }
