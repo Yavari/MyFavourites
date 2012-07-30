@@ -42,7 +42,7 @@ namespace MyFavouritesTests.Controllers
             // Assert
             Assert.AreEqual("Details", result.ViewName);
             Assert.IsInstanceOf<Document>(result.Model);
-            Assert.AreEqual(document, result.Model.Id);
+            Assert.AreEqual(document.Id, result.Model.Id);
         }
 
     }

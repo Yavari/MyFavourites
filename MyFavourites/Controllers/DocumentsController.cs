@@ -10,5 +10,11 @@ namespace MyFavourites.Controllers
             var documents = Document.FindAll();
             return View("Index", documents);
         }
+
+        public ActionResult Details(int id)
+        {
+            var document = Document.Find(id);
+            return View("Details", document);
+        }
     }
 }
