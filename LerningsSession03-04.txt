@@ -1,0 +1,26 @@
+What we learned today:
+
+- More unit-testing
+- Controllers
+	- Difference between RESTFul and .NET Default MVC
+	- Decorating with HTTP Verbs
+	- Use Form Collection vs. Model-Binding
+		- Risks with not sanitizing incoming data
+	- ViewResult and RedirectToAction
+	- Routing
+	- How to assert ViewResult
+	- When to use dynamics vs. casting
+	- Different ways of casting
+		- (Foo) bar
+		- bar as Foo
+	- IEnumerable<> is the base interface of list types.
+		- IList<> inherits from IEnumerable<> 
+- Views
+	- Reviewed HTML5
+	- Razor syntax
+	- Layouts
+		- Shared
+	- Including model in views
+	- Use default HTML Helpers
+	- Forms
+	- Http://www.w3schools.com/html5/html5_reference.asp

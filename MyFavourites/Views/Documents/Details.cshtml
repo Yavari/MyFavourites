@@ -1,0 +1,25 @@
+﻿@model MyFavourites.Models.Document
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <fieldset>
+	    <legend>Document Details</legend>
+	    <label>
+		    <span>@Html.DisplayNameFor(model => model.Title):</span>
+		    <span>@Html.DisplayFor(model => model.Title)</span>
+	    </label>
+	    <label>
+		    <span>@Html.DisplayNameFor(model => model.Text):</span>
+		    <span>@Html.DisplayFor(model => model.Text)</span>
+	    </label>
+	    <label>
+		    <span>Author:</span>
+		    <span>@Html.DisplayFor(model => model.Author.Username)</span>
+	    </label>
+    </fieldset>
+
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    

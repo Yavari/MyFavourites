@@ -22,6 +22,7 @@ namespace MyFavourites.Controllers
             return View("Create");
         }
 
+        [HttpPost]
         public ActionResult Create(FormCollection form)
         {
             var document = new Document();
@@ -35,6 +36,7 @@ namespace MyFavourites.Controllers
             return View("Edit", Document.Find(id));
         }
 
+        [HttpPost]
         public ActionResult Edit(int id, FormCollection form)
         {
             var original = Document.Find(id);
@@ -43,6 +45,7 @@ namespace MyFavourites.Controllers
             return RedirectToAction("Details", new {Id = id});
         }
 
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             var document = Document.Find(id);
