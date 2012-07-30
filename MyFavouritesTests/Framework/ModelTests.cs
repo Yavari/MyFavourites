@@ -34,5 +34,10 @@ namespace MyFavouritesTests.Framework
             ScopeManagement.DisposeScope();
             ActiveRecordStarter.DropSchema(); 
         }
+
+        protected virtual void ResetScope()
+        {
+            ScopeManagement.ResetScope();
+        }
     }
 }

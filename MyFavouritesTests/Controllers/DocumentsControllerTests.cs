@@ -73,7 +73,59 @@ namespace MyFavouritesTests.Controllers
             Assert.AreEqual("Details", result.RouteValues["Action"]);
             Assert.AreEqual(document.Id, result.RouteValues["Id"]);
             Assert.AreEqual(1, Document.FindAll().Count());
-            
+        }
+
+        [Test]
+        public void CanRetunEditView()
+        {
+            // Setup
+            var document = new Document();
+            document.Save();
+
+            //Act
+            dynamic result = _controller.Edit(document.Id);
+
+            // Assert
+            Assert.AreEqual("Edit", result.ViewName);
+            Assert.AreEqual(document, result.Model);
+        }
+
+        [Test]
+        public void CanUpdateDocument()
+        {
+            // Setup
+            var document = new Document
+            {
+                Title = "New Title",
+                Text = "New Text"
+            };
+            document.Save();
+
+            // Act
+            dynamic result = _controller.Edit(document.Id, document);
+
+            // Assert
+            Assert.AreEqual("Details", result.RouteValues["Action"]);
+            Assert.AreEqual(document.Id, result.RouteValues["Id"]);
+            document = Document.Find(document.Id);
+            Assert.AreEqual("New Title", document.Title);
+            Assert.AreEqual("New Text", document.Text);
+        }
+
+        [Test]
+        public void CanDelete()
+        {
+            // Setup
+            var document = new Document();
+            document.Save();
+
+            // Act
+            dynamic result = _controller.Delete(document.Id);
+
+            // Assert
+            ResetScope();
+            Assert.AreEqual("Index", result.RouteValues["Action"]);
+            Assert.AreEqual(0, Document.FindAll().Count());
         }
     }
 }
