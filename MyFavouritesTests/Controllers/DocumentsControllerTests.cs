@@ -58,5 +58,20 @@ namespace MyFavouritesTests.Controllers
             // Assert
             Assert.AreEqual("Create", result.ViewName);
         }
+
+        [Test]
+        public void CanCreateDocument()
+        {
+            // Setup
+            var document = new Document();
+
+            // Act
+            var result = _controller.Create(document) as 
+                RedirectToRouteResult;
+
+            // Assert
+            Assert.AreEqual("Details", result.RouteValues["Action"]);
+            Assert.AreEqual(1, Document.FindAll().Count());
+        }
     }
 }
