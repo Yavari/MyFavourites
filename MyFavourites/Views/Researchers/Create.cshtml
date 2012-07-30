@@ -1,0 +1,32 @@
+﻿@model MyFavourites.Models.Researcher
+
+@{
+    ViewBag.Title = "Create";
+}
+
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <fieldset>
+			<legend>Add User</legend>
+			<label>
+				<span>@Html.LabelFor(model => model.Name):</span>
+				@Html.EditorFor(model => model.Name)
+				<span>@Html.ValidationMessageFor(model => model.Name)</span>
+			</label>
+			<label>
+				<span>@Html.LabelFor(model => model.Username):</span>
+				@Html.EditorFor(model => model.Username)
+				<span>@Html.ValidationMessageFor(model => model.Username)</span>
+			</label>
+			<label>
+				<span>@Html.LabelFor(model => model.Email):</span>
+				@Html.EditorFor(model => model.Email)
+				<span>@Html.ValidationMessageFor(model => model.Email)</span>
+			</label>
+		</fieldset>
+		<button type="submit">Create User</button>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

@@ -1,0 +1,24 @@
+﻿@model MyFavourites.Models.Researcher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <fieldset>
+	    <legend>User Details</legend>
+	    <label>
+		    <span>@Html.DisplayNameFor(model => model.Name):</span>
+		    <span>@Html.DisplayFor(model => model.Name)</span>
+	    </label>
+	    <label>
+		    <span>@Html.DisplayNameFor(model => model.Username):</span>
+		    <span>@Html.DisplayFor(model => model.Username)</span>
+	    </label>
+	    <label>
+		    <span>@Html.DisplayNameFor(model => model.Email):</span>
+		    <span>@Html.DisplayFor(model => model.Email)</span>
+	    </label>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) | @Html.ActionLink("Back to List", "Index")
+    </p>
