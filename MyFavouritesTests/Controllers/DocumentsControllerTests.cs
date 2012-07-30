@@ -13,14 +13,20 @@ namespace MyFavouritesTests.Controllers
     [TestFixture]
     public class DocumentsControllerTests : ModelTests
     {
+        private DocumentsController _controller;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _controller = new DocumentsController();
+        }
+
+
         [Test]
         public void CanGetAllDocuments()
         {
-            // Setup
-            var controller = new DocumentsController();
-            
             // Act
-            var result = controller.Index() as ViewResult;
+            var result = _controller.Index() as ViewResult;
 
             // Assert
             Assert.AreEqual("Index", result.ViewName);
@@ -34,10 +40,8 @@ namespace MyFavouritesTests.Controllers
             var document = new Document();
             document.Save();
 
-            var controller = new DocumentsController();
-
             // Act
-            dynamic result = controller.Details(document.Id);
+            dynamic result = _controller.Details(document.Id);
 
             // Assert
             Assert.AreEqual("Details", result.ViewName);
@@ -45,5 +49,14 @@ namespace MyFavouritesTests.Controllers
             Assert.AreEqual(document.Id, result.Model.Id);
         }
 
+        [Test]
+        public void CanReturnCreateView()
+        {
+            // Act
+            dynamic result = _controller.Create();
+
+            // Assert
+            Assert.AreEqual("Create", result.ViewName);
+        }
     }
 }

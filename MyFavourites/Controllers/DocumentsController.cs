@@ -16,5 +16,10 @@ namespace MyFavourites.Controllers
             var document = Document.Find(id);
             return View("Details", document);
         }
+
+        public ActionResult Create()
+        {
+            return View("Create");
+        }
     }
 }
