@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using MyFavourites.Controllers;
 using MyFavourites.Models;
 using MyFavouritesTests.Framework;
 using MyFavouritesTests.Helpers;
 using NUnit.Framework;
-using Training_wmqr.Controllers;
 
 namespace MyFavouritesTests.Controllers
 {
     [TestFixture]
-    class ResearcherControllerTests : ModelTests
+    class ResearchersControllerTests : ModelTests
     {
 
-        private ResearcherController _controller;
+        private ResearchersController _controller;
 
         [SetUp]
         public void Setup()
         {
-            _controller = new ResearcherController();
+            _controller = new ResearchersController();
             _controller.SetFakeControllerContext();
             var user = new Researcher
             {

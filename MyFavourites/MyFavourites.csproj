@@ -114,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DocumentsController.cs" />
-    <Compile Include="Controllers\ResearcherController.cs" />
+    <Compile Include="Controllers\ResearchersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

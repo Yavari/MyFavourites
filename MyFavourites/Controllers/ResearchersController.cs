@@ -1,10 +1,9 @@
-﻿
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using MyFavourites.Models;
 
-namespace Training_wmqr.Controllers
+namespace MyFavourites.Controllers
 {
-    public class ResearcherController : Controller
+    public class ResearchersController : Controller
     {
         public ActionResult Index()
         {
