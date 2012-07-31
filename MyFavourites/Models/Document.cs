@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Castle.ActiveRecord;
@@ -12,9 +13,11 @@ namespace MyFavourites.Models
         [PrimaryKey]
         public int Id { get; set; }
 
+        [Required]
         [Property]
         public string Title { get; set; }
 
+        [Required]
         [Property]
         public string Text { get; set; }
 

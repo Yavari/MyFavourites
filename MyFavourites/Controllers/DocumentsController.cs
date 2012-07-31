@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using Castle.ActiveRecord;
 using MyFavourites.Models;
 
 namespace MyFavourites.Controllers
@@ -26,9 +27,12 @@ namespace MyFavourites.Controllers
         public ActionResult Create(FormCollection form)
         {
             var document = new Document();
-            TryUpdateModel(document);
-            document.Save();
-            return RedirectToAction("Details", new {id = document.Id});
+            if (TryUpdateModel(document))
+            {
+                document.Save();
+                return RedirectToAction("Details", new {id = document.Id});
+            }
+            return View("Create");
         }
 
         public ActionResult Edit(int id)
@@ -39,10 +43,17 @@ namespace MyFavourites.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection form)
         {
-            var original = Document.Find(id);
-            TryUpdateModel(original);
-            original.Save();
-            return RedirectToAction("Details", new {Id = id});
+            using (var transaction = new TransactionScope(TransactionMode.Inherits))
+            {
+                var original = Document.Find(id);
+                if (TryUpdateModel(original))
+                {
+                    original.Save();
+                    return RedirectToAction("Details", new { Id = id });
+                }
+                transaction.VoteRollBack();
+                return View("Edit"); 
+            }
         }
 
         [HttpPost]

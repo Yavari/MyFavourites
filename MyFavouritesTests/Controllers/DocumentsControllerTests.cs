@@ -16,7 +16,7 @@ namespace MyFavouritesTests.Controllers
     public class DocumentsControllerTests : ModelTests
     {
         private DocumentsController _controller;
-
+        
         [SetUp]
         public void SetUp()
         {
@@ -82,6 +82,27 @@ namespace MyFavouritesTests.Controllers
             Assert.AreEqual(1, Document.FindAll().Count());
         }
 
+
+        [Test]
+        public void WillNotCreateIfInvalidModel()
+        {
+            // Setup
+            var form = new FormCollection
+            {
+                {"Title", ""},
+                {"Text", "This is the Text"}
+            };
+            _controller.ValueProvider = form.ToValueProvider();
+
+            // Act
+            var result = _controller.Create(form) as ViewResult;
+
+            // Assert
+            Assert.AreEqual("Create", result.ViewName);
+            Assert.AreEqual(0, Document.FindAll().Count());
+        }
+
+
         [Test]
         public void CanRetunEditView()
         {
@@ -119,6 +140,31 @@ namespace MyFavouritesTests.Controllers
             document = Document.Find(document.Id);
             Assert.AreEqual("New Title", document.Title);
             Assert.AreEqual("New Text", document.Text);
+        }
+
+        [Test]
+        public void WillNotUpdateIfInvalidModel()
+        {
+            // Setup
+            var document = new Document();
+            document.Save();
+            ResetScope();
+            var form = new FormCollection
+            {
+                {"Title", ""},
+                {"Text", "This is the Text"}
+            };
+            _controller.ValueProvider = form.ToValueProvider();
+
+            // Act
+            dynamic result = _controller.Edit(document.Id, form);
+
+            // Assert
+            ResetScope();
+            Assert.AreEqual("Edit", result.ViewName);
+            document = Document.Find(document.Id);
+            Assert.IsNull(document.Title);
+            Assert.IsNull(document.Text);
         }
 
         [Test]
