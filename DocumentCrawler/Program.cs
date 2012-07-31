@@ -21,19 +21,25 @@ namespace DocumentCrawler
             solr.Delete(SolrQuery.All);
             solr.Commit();
 
-            var payload = new List<SolrDocument>();
             var i = 0;
             foreach (var file in Directory.GetFiles(fixtures))
             {
                 Console.WriteLine(file);
-                payload.Add(new SolrDocument
+
+                using(var fileStream = File.OpenRead(file))
                 {
-                    Id = ++i,
-                    Title = Path.GetFileName(file)
-                });
+                    solr.Extract(new ExtractParameters(fileStream, (++i).ToString())
+                    {
+                        ExtractFormat = ExtractFormat.Text,
+                        ExtractOnly = false,
+                        Fields = new List<ExtractField>()
+                        {
+                            new ExtractField("title", Path.GetFileName(file)),
+                            new ExtractField("author", "Baha'i World Volume")
+                        }
+                    });
+                }
             }
-            solr.AddRange(payload);
-            solr.Commit();
         }
     }
 }
