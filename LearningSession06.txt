@@ -1,0 +1,4 @@
+http://localhost:8983/solr/
+DocumentCrawler.exe D:\projects\MyFavourites\data-fixtures\bwv
+
+Service locator pattern to access SolR
